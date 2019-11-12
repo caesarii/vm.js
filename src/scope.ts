@@ -21,6 +21,7 @@ export class Scope {
    * console.log(b); // 1
    *
    */
+  // 侵入性: 是指如果作用域是块级作用域, 在该作用域声明的 var 变量将不断冒泡, 最终定义在孤立型父级作用域(函数作用域)
   public invasive: boolean = false;
 
   /**
@@ -28,23 +29,29 @@ export class Scope {
    * The top scope's level is 0.
    * every child scope will increase 1
    */
+  // 作用域级别, 全局作用域级别为0, 子作用域依次 +1
   public level: number = 0;
 
   // scope context
+  // 作用域的context
+  // 对于全局作用域, context 是指定的沙盒, 通常是 window
   public context: Context;
 
   // isolated scope.
   // if isolated = true
   // it will create a new scope in blockStatement
+  // 此处可能有误, isolated 是指函数作用域, 即块声明不能创建作用域
   public isolated: boolean = true;
 
   // the scope fork from witch scope
+  // 该作用域 fork 的源头
   public origin: Scope | null = null;
 
-  // scope var
+  // 作用域中的变量
   private content: { [key: string]: Var<any> } = {};
 
   constructor(public readonly type: ScopeType, public parent: Scope | null) {
+    // 实例化 context, 该 context 会被 setContext 初始化
     this.context = new Context();
   }
 
@@ -180,6 +187,7 @@ export class Scope {
         if (targetScope.level === 0 && targetScope.context[varName]) {
           // top level context can not be cover
           // here we do nothing
+          // 为什么 do nothing: 为了不覆盖 window.alert 这样的变量, 但v8实际上仍然可覆盖?
         } else {
           // new var cover the old var
           targetScope.content[varName] = new Var(
