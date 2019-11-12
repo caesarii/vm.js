@@ -1,5 +1,5 @@
 import test from "ava";
-import vm from "../../..//src/vm";
+import vm from "../../../src";
 import { ErrNotDefined } from "../../../src/error";
 
 test("Var should Hoisting", async t => {

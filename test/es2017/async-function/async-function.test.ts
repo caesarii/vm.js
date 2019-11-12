@@ -1,6 +1,6 @@
 import test from "ava";
 
-import vm from "../../../src/vm";
+import vm from "../../../src";
 
 function sleep(ms) {
   return new Promise((resolve, reject) => {

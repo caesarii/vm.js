@@ -1,6 +1,6 @@
 import test from "ava";
 import { isImportDefaultSpecifier } from "babel-types";
-import vm from "../../../src/vm";
+import vm from "../../../src";
 
 test("ExportDeclaration-1", t => {
   const sandbox: any = vm.createContext({});

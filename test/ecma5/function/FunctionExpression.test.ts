@@ -1,5 +1,5 @@
 import test from "ava";
-import vm from "../../../src/vm";
+import vm from "../../../src";
 import { ErrIsNotFunction } from "../../../src/error";
 
 test("FunctionExpression-1", t => {

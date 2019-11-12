@@ -1,7 +1,7 @@
 import test from "ava";
 import { isImportDefaultSpecifier } from "babel-types";
 import { parse } from "babylon";
-import vm from "../../../src/vm";
+import vm from "../../../src";
 import { ErrNotDefined, ErrIsNotFunction } from "../../../src/error";
 
 test("ImportDeclaration-1", t => {

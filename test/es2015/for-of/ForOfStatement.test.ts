@@ -1,6 +1,6 @@
 import test from "ava";
 import { ErrInvalidIterable } from "../../../src/error";
-import vm from "../../../src/vm";
+import vm from "../../../src";
 
 test("ForOfStatement-invalid Iterator", t => {
   const sandbox: any = vm.createContext({});

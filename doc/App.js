@@ -20,7 +20,7 @@ import "codemirror/addon/search/matchesonscrollbar.js";
 import "codemirror/addon/search/matchesonscrollbar.css";
 
 // import vm from "../dist/vm";
-import vm from "../src/vm";
+import vm from "../src";
 import pkg from "../package";
 import jsCode from "./code";
 export default class App extends Component {

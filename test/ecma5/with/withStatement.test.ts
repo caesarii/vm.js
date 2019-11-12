@@ -1,5 +1,5 @@
 import test from "ava";
-import vm from "../../../src/vm";
+import vm from "../../../src";
 
 // babylon always in strict mode
 // and strict mode disable with

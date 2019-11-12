@@ -1,5 +1,5 @@
 import test from "ava";
-import vm from "../../../src/vm";
+import vm from "../../../src";
 
 test("if", t => {
   const sandbox: any = vm.createContext({});
