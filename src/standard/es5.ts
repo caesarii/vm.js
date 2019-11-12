@@ -1,5 +1,5 @@
 import * as types from "babel-types";
-import * as isFunction from "lodash.isfunction";
+import isFunction from "lodash.isfunction";
 import {
   ErrNoSuper,
   ErrNotDefined,
@@ -1104,8 +1104,8 @@ export const es5: ES5Map = {
     return target instanceof Prototype
       ? target
       : isFunction(target)
-        ? target.bind(obj)
-        : target;
+      ? target.bind(obj)
+      : target;
   },
   AssignmentExpression(path) {
     const { node, scope } = path;
