@@ -19,13 +19,14 @@ export function runInContext(
   context: Context,
   preset: presetMap = presetMap.env
 ) {
+  // 创建全局作用域
   const scope = new Scope(ScopeType.Root, null);
-  scope.level = 0;
-  scope.invasive = true;
-  scope.const(THIS, undefined);
-  scope.setContext(context);
+  scope.level = 0; // 表示全局作用域
+  scope.invasive = true; // 全局作用域是侵入性的 ?
+  scope.const(THIS, undefined); // 声明 this
+  scope.setContext(context); // 设置 context
 
-  // define module
+  // 定义根模块, 声明 exports 为全局作用域 var 变量, 声明 module  为全局作用域 const 变量
   const $exports = {};
   const $module = { exports: $exports };
   scope.const(MODULE, $module);
