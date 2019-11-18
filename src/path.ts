@@ -16,7 +16,8 @@ export class Path<T extends Node> {
     public scope: Scope,
     public ctx: ICtx,
     public stack: Stack
-  ) {}
+  ) {
+  }
   /**
    * Generate child scope
    * @template Child
@@ -31,14 +32,15 @@ export class Path<T extends Node> {
     scope?: ScopeType | Scope,
     ctx?: ICtx
   ): Path<Child> {
+    const s = scope
+      ? typeof scope === "number"
+        ? this.scope.createChild(scope)
+        : scope
+      : this.scope
     const path = new Path(
       node,
       this,
-      scope
-        ? typeof scope === "number"
-          ? this.scope.createChild(scope)
-          : scope
-        : this.scope,
+      s,
       { ...this.ctx, ...ctx },
       this.stack
     );
