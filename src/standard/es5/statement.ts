@@ -1,39 +1,9 @@
 import * as types from "babel-types";
-import isFunction from "lodash.isfunction";
-import {
-  ErrNoSuper,
-  ErrNotDefined,
-  ErrIsNotFunction,
-  ErrCanNotReadProperty,
-  ErrInvalidIterable
-} from "../../error";
 import { __generator, _toConsumableArray, __awaiter } from "../../runtime";
-import { Var, IVar } from "../../var";
-import { ES5Map, Kind, ScopeType } from "../../type";
+import { Kind, ScopeType } from "../../type";
 import { Signal } from "../../signal";
 import { Scope } from "../../scope";
-import { Stack } from "../../stack";
-import { THIS, UNDEFINED, ARGUMENTS, NEW, ANONYMOUS } from "../../constant";
-
-import {
-  isArrayPattern,
-  isAssignmentPattern,
-  isFunctionDeclaration,
-  isIdentifier,
-  isMemberExpression,
-  isObjectExpression,
-  isObjectPattern,
-  isObjectProperty,
-  isRestElement,
-  isSpreadElement,
-  isVariableDeclaration,
-  isStringLiteral
-} from "../../packages/babel-types";
-
-import { defineFunctionLength, defineFunctionName } from "../../utils";
-
-import { Prototype } from "../../Prototype";
-import { This } from "../../This";
+import { isFunctionDeclaration, isVariableDeclaration } from "../../packages/babel-types";
 
 export const Statement = {
     IfStatement(path) {
