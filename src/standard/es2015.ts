@@ -13,11 +13,11 @@ import {
   _inherits,
   _possibleConstructorReturn,
   _taggedTemplateLiteral
-} from "../runtime";
+} from "../runtime/runtime";
 import { ES2015Map, ScopeType } from "../type";
-import { Signal } from "../signal";
-import { Scope } from "../scope";
-import { Stack } from "../stack";
+import { Signal } from "../runtime/signal";
+import { Scope } from "../runtime/scope";
+import { Stack } from "../runtime/stack";
 import { MODULE, THIS, REQUIRE, ARGUMENTS, NEW, ANONYMOUS } from "../constant";
 
 import {

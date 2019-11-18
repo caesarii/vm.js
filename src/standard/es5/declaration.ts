@@ -11,11 +11,11 @@ import {
 import { ErrInvalidIterable } from "../../error";
 import { overriteStack } from './es5';
 import { Kind, ScopeType } from "../../type";
-import { Scope } from "../../scope";
-import { __generator, _toConsumableArray, __awaiter } from "../../runtime";
-import { Signal } from "../../signal";
+import { Scope } from "../../runtime/scope";
+import { __generator, _toConsumableArray, __awaiter } from "../../runtime/runtime";
+import { Signal } from "../../runtime/signal";
 import { defineFunctionLength, defineFunctionName } from "../../utils";
-import { This } from "../../This";
+import { This } from "../../runtime/This";
 import { THIS, ARGUMENTS, NEW } from "../../constant";
 
 export const Declaration = {

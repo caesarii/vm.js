@@ -1,7 +1,7 @@
 import { Node } from "babel-types";
-import { Scope } from "./scope";
+import { Scope } from "./runtime/scope";
 import { ScopeType, EvaluateFunc, presetMap } from "./type";
-import { Stack } from "./stack";
+import { Stack } from "./runtime/stack";
 
 export interface ICtx {
   [k: string]: any;

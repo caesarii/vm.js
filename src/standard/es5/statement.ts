@@ -1,8 +1,8 @@
 import * as types from "babel-types";
-import { __generator, _toConsumableArray, __awaiter } from "../../runtime";
+import { __generator, _toConsumableArray, __awaiter } from "../../runtime/runtime";
 import { Kind, ScopeType } from "../../type";
-import { Signal } from "../../signal";
-import { Scope } from "../../scope";
+import { Signal } from "../../runtime/signal";
+import { Scope } from "../../runtime/scope";
 import { isFunctionDeclaration, isVariableDeclaration } from "../../packages/babel-types";
 
 export const Statement = {

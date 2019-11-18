@@ -1,6 +1,6 @@
 import { Context } from "./context";
-import { ErrDuplicateDeclard } from "./error";
-import { Kind, KindType, ScopeType, isolatedScopeMap } from "./type";
+import { ErrDuplicateDeclard } from "../error";
+import { Kind, KindType, ScopeType, isolatedScopeMap } from "../type";
 import { Var } from "./var";
 
 export class Scope {

@@ -6,10 +6,10 @@ import {
   ErrIsNotFunction,
   ErrCanNotReadProperty,
 } from "../../error";
-import { __generator, _toConsumableArray, __awaiter } from "../../runtime";
-import { Var, IVar } from "../../var";
+import { __generator, _toConsumableArray, __awaiter } from "../../runtime/runtime";
+import { Var, IVar } from "../../runtime/var";
 import { Kind, ScopeType } from "../../type";
-import { Signal } from "../../signal";
+import { Signal } from "../../runtime/signal";
 import { THIS, UNDEFINED, ANONYMOUS } from "../../constant";
 
 import {
@@ -19,8 +19,8 @@ import {
   isStringLiteral
 } from "../../packages/babel-types";
 import { defineFunctionLength, defineFunctionName } from "../../utils";
-import { Prototype } from "../../Prototype";
-import { This } from "../../This";
+import { Prototype } from "../../runtime/Prototype";
+import { This } from "../../runtime/This";
 import { overriteStack, BinaryExpressionOperatorEvaluateMap, AssignmentExpressionEvaluateMap } from './es5';
 
 export const Expression = {

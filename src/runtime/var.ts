@@ -1,5 +1,5 @@
 import { Scope } from "./scope";
-import { Kind, KindType } from "./type";
+import { Kind, KindType } from "../type";
 
 export interface IVar {
   kind: Kind | KindType;

@@ -1,11 +1,11 @@
 import { parse } from "babylon";
-import { Context, ISandBox } from "./context";
+import { Context, ISandBox } from "./runtime/context";
 import evaluate from "./evaluate";
 import { Path } from "./path";
-import { Scope } from "./scope";
+import { Scope } from "./runtime/scope";
 import { MODULE, EXPORTS, THIS } from "./constant";
 import { ScopeType, presetMap } from "./type";
-import { Stack } from "./stack";
+import { Stack } from "./runtime/stack";
 
 /**
  * Run the code in context
@@ -44,11 +44,12 @@ export function runInContext(
       "objectRestSpread"
     ]
   });
-
+  console.log('ast', ast);
   const path = new Path(ast, null, scope, {}, new Stack());
+  console.log('path 1', path)
   path.preset = preset;
   path.evaluate = evaluate;
-
+  console.log('path', path)
   evaluate(path);
 
   // exports

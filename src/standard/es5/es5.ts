@@ -1,10 +1,10 @@
 import * as types from "babel-types";
 import { ErrNotDefined } from "../../error";
-import { __generator, _toConsumableArray, __awaiter } from "../../runtime";
+import { __generator, _toConsumableArray, __awaiter } from "../../runtime/runtime";
 import { ES5Map, Kind } from "../../type";
-import { Stack } from "../../stack";
+import { Stack } from "../../runtime/stack";
 import { UNDEFINED, ANONYMOUS } from "../../constant";
-import { IVar } from "../../var";
+import { IVar } from "../../runtime/var";
 import { isFunctionDeclaration, isVariableDeclaration } from "../../packages/babel-types";
 
 // qinghe

@@ -1,5 +1,5 @@
 import test from "ava";
-import { Signal } from "./signal";
+import { Signal } from "../signal";
 
 test("signal check", t => {
   t.false(Signal.isBreak(undefined));

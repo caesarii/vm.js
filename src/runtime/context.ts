@@ -1,4 +1,4 @@
-import { UNDEFINED } from "./constant";
+import { UNDEFINED } from "../constant";
 
 export interface ISandBox {
   [k: string]: any;

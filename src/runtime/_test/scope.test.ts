@@ -1,8 +1,8 @@
 import test from "ava";
-import { Scope } from "./scope";
-import { Context, DEFAULT_CONTEXT } from "./context";
-import { ErrDuplicateDeclard } from "./error";
-import { ScopeType } from "./type";
+import { Scope } from "../scope";
+import { Context, DEFAULT_CONTEXT } from "../context";
+import { ErrDuplicateDeclard } from "../../error";
+import { ScopeType } from "../../type";
 
 test("root scope", t => {
   const scope = new Scope(ScopeType.Root, null);
