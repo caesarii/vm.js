@@ -1,4 +1,4 @@
-import * as es5 from "./es5";
+import * as es5 from "./es5/es5";
 import { ES2016Map } from "../type";
 
 const BinaryExpressionOperatorEvaluateMap = {
