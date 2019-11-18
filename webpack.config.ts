@@ -4,7 +4,7 @@ import * as path from "path";
 // webpack.config.js
 const webpackConfig: webpack.Configuration = {
   entry: {
-    vm: path.join(__dirname, "src", "vm.ts")
+    vm: path.join(__dirname, "src", "index.ts")
   },
   output: {
     path: path.join(__dirname, "/dist"),
