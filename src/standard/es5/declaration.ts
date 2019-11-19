@@ -140,7 +140,6 @@ export const Declaration = {
         }
     },
     FunctionDeclaration(path) {
-        // 
         const { node, scope } = path;
         const { name: functionName } = node.id;
 
@@ -243,7 +242,7 @@ export const Declaration = {
         defineFunctionLength(func, node.params.length || 0);
         defineFunctionName(func, functionName);
 
-        // 函数可以重复声明
+        // 在作用域中声明函数, 函数可以重复声明
         scope.var(functionName, func);
     },
     FunctionExpression(path) {
@@ -251,34 +250,40 @@ export const Declaration = {
     
         const functionName = node.id ? node.id.name : "";
         const func = function(...args) {
-          stack.enter(functionName); // enter the stack
+          // 进入函数对应的栈
+          stack.enter(functionName);
     
-          // Is this function is a constructor?
-          // if it's constructor, it should return instance
+          // 判断函数是否是构造器, 如果是构造器需要返回实例
+          // 判断依据最后一个参数是 this
           const shouldReturnInstance =
             args.length &&
             args[args.length - 1] instanceof This &&
             args.pop() &&
             true;
     
+            // 为函数创建一个子作用域
+            // 在函数作用域中依次声明: 参数, this, new, arguments
           const funcScope = scope.createChild(ScopeType.Function);
           for (let i = 0; i < node.params.length; i++) {
             const param = node.params[i];
             if (isIdentifier(param)) {
+              // 标识符参数声明为 let 变量
               funcScope.let(param.name, args[i]);
             } else if (isAssignmentPattern(param)) {
-              // @es2015 default parameters
+              // @es2015 默认参数
               path.evaluate(path.createChild(param, funcScope, { value: args[i] }));
             } else if (isRestElement(param)) {
-              // @es2015 rest parameters
+              // @es2015 剩余参数
               path.evaluate(
                 path.createChild(param, funcScope, { value: args.slice(i) })
               );
             }
           }
-    
+          // this 声明为 const 变量
           funcScope.const(THIS, this);
-          // support new.target
+
+          // ???
+          // support new.target 
           funcScope.const(NEW, {
             target:
               this && this.__proto__ && this.__proto__.constructor
@@ -287,8 +292,11 @@ export const Declaration = {
           });
           funcScope.const(ARGUMENTS, arguments);
           funcScope.isolated = false;
-    
+          
+          // 对函数体进行求值
           const result = path.evaluate(path.createChild(node.body, funcScope));
+
+          // 退出栈
           stack.leave(); // leave stack
           if (result instanceof Signal) {
             return result.value;
@@ -299,6 +307,7 @@ export const Declaration = {
           }
         };
     
+        // 定义 length, name 属性
         defineFunctionLength(func, node.params.length);
         defineFunctionName(func, node.id ? node.id.name : ""); // Anonymous function
     

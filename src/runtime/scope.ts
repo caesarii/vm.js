@@ -40,7 +40,7 @@ export class Scope {
   // isolated scope.
   // if isolated = true
   // it will create a new scope in blockStatement
-  // 此处可能有误, isolated 是指函数作用域, 即块声明不能创建作用域
+  // 此处可能有误, isolated 是指函数作用域, 即块声明不能创建作用域(错误)
   public isolated: boolean = true;
 
   // the scope fork from witch scope
