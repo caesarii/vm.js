@@ -15,11 +15,11 @@ export const Statement = {
         } else if (path.node.alternate) {
             return path.evaluate(path.createChild(path.node.alternate, ifScope));
         }
-        },
-        EmptyStatement(path) {
-        // do nothing
-        },
-        BlockStatement(path) {
+    },
+    EmptyStatement(path) {
+    // do nothing
+    },
+    BlockStatement(path) {
         const { node: block, scope } = path;
 
         let blockScope: Scope = !scope.isolated
@@ -78,42 +78,42 @@ export const Statement = {
         // to support do-expression
         // anyway, return the last item
         return tempResult;
-        },
-        // babylon parse in strict mode and disable WithStatement
-        // WithStatement(path) {
-        // throw ErrNotSupport(path.node.type);
-        // },
-        DebuggerStatement(path) {
+    },
+    // babylon parse in strict mode and disable WithStatement
+    // WithStatement(path) {
+    // throw ErrNotSupport(path.node.type);
+    // },
+    DebuggerStatement(path) {
         // tslint:disable-next-line
         debugger;
-        },
-        LabeledStatement(path) {
+    },
+    LabeledStatement(path) {
         const label = path.node.label as types.Identifier;
         return path.evaluate(
             path.createChild(path.node.body, path.scope, { labelName: label.name })
         );
-        },
-        BreakStatement(path) {
+    },
+    BreakStatement(path) {
         const label = path.node.label;
         return new Signal("break", label ? label.name : undefined);
-        },
-        ContinueStatement(path) {
+    },
+    ContinueStatement(path) {
         const label = path.node.label;
         return new Signal("continue", label ? label.name : undefined);
-        },
-        ReturnStatement(path) {
+    },
+    ReturnStatement(path) {
         return new Signal(
             "return",
             path.node.argument
             ? path.evaluate(path.createChild(path.node.argument))
             : undefined
         );
-        },
+    },
 
-        ExpressionStatement(path) {
+    ExpressionStatement(path) {
         return path.evaluate(path.createChild(path.node.expression));
-        },
-        ForStatement(path) {
+    },
+    ForStatement(path) {
         const { node, scope, ctx } = path;
         const labelName = ctx.labelName as string | void;
         const forScope = scope.createChild(ScopeType.For);
@@ -174,8 +174,8 @@ export const Statement = {
 
             update();
         }
-        },
-        ForInStatement(path) {
+    },
+    ForInStatement(path) {
         const { node, scope, ctx } = path;
         const kind = (node.left as types.VariableDeclaration).kind;
         const decl = (node.left as types.VariableDeclaration).declarations[0];
@@ -215,8 +215,8 @@ export const Statement = {
             }
             }
         }
-        },
-        DoWhileStatement(path) {
+    },
+    DoWhileStatement(path) {
         const { node, scope, ctx } = path;
         const labelName: string | void = ctx.labelName;
         // do while don't have his own scope
@@ -245,8 +245,8 @@ export const Statement = {
             return signal;
             }
         } while (path.evaluate(path.createChild(node.test)));
-        },
-        WhileStatement(path) {
+    },
+    WhileStatement(path) {
         const { node, scope, ctx } = path;
         const labelName: string | void = ctx.labelName;
 
@@ -278,15 +278,15 @@ export const Statement = {
             return signal;
             }
         }
-        },
-        ThrowStatement(path) {
+    },
+    ThrowStatement(path) {
         // TODO: rewrite the stack log
         throw path.evaluate(path.createChild(path.node.argument));
-        },
-        CatchClause(path) {
+    },
+    CatchClause(path) {
         return path.evaluate(path.createChild(path.node.body));
-        },
-        TryStatement(path) {
+    },
+    TryStatement(path) {
         const { node, scope } = path;
         try {
             const tryScope = scope.createChild(ScopeType.Try);
@@ -309,8 +309,8 @@ export const Statement = {
             return path.evaluate(path.createChild(node.finalizer, finallyScope));
             }
         }
-        },
-        SwitchStatement(path) {
+    },
+    SwitchStatement(path) {
         const { node, scope } = path;
         const discriminant = path.evaluate(path.createChild(node.discriminant)); // switch的条件
         const switchScope = scope.createChild(ScopeType.Switch);
@@ -343,8 +343,8 @@ export const Statement = {
             }
             }
         }
-        },
-        SwitchCase(path) {
+    },
+    SwitchCase(path) {
         const { node } = path;
         for (const stmt of node.consequent) {
             const result = path.evaluate(path.createChild(stmt));
@@ -352,5 +352,5 @@ export const Statement = {
             return result;
             }
         }
-        },
+    },
 }
