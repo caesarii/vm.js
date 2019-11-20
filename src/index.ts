@@ -23,7 +23,9 @@ export function runInContext(
   const scope = new Scope(ScopeType.Root, null);
   scope.level = 0; // 表示全局作用域
   scope.invasive = true; // 全局作用域是侵入性的 ?
-  scope.const(THIS, undefined); // 声明 this
+  // 声明全局作用域的 this 为 undefined, 全局 this 如何初始化为 window
+  // 在该实现中全局 this 为undefined
+  scope.const(THIS, undefined); 
   scope.setContext(context); // 设置 context
 
   // 定义根模块, 声明 exports 为全局作用域 var 变量, 声明 module  为全局作用域 const 变量

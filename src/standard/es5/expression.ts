@@ -419,11 +419,16 @@ export const Expression = {
     },
     NewExpression(path) {
         const { node, stack } = path;
+        // 对构造函数进行求值
         const func = path.evaluate(path.createChild(node.callee));
+        // 对参数进行求值
         const args: any[] = node.arguments.map(arg =>
             path.evaluate(path.createChild(arg))
         );
+        // 设置为构造器
         func.prototype.constructor = func;
+        // 如果是内置构造器
+        // 如果是自定义构造器需要传入 this
         let entity = /native code/.test(func.toString())
             ? new func(...args)
             : new func(...args, new This(null));
