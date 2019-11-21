@@ -90,6 +90,7 @@ export class Scope {
    * @returns {(Var<any> | void)}
    * @memberof Scope
    */
+  // parent 是哪来的
   public hasBinding(varName: string): Var<any> | void {
     if (this.content.hasOwnProperty(varName)) {
       return this.content[varName];
